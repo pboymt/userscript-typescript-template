@@ -1,0 +1,43 @@
+{
+  "name": "userscript-typescript-template",
+  "version": "1.0.0",
+  "description": "Template repo using Webpack and TypeScript to build your userscript for Tampermonkey and more extensions.",
+  "main": "userscript/index.user.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pboymt/userscript-typescript-template.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pboymt/userscript-typescript-template/issues"
+  },
+  "homepage": "https://github.com/pboymt/userscript-typescript-template#readme",
+  "devDependencies": {
+    "@types/node": "^16.11.10",
+    "@types/webpack": "^5.28.0",
+    "ts-loader": "^9.2.6",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.2",
+    "webpack": "^5.64.3",
+    "webpack-cli": "^4.9.1"
+  },
+  "userscript": {
+    "require-template": "https://cdn.jsdelivr.net/npm/${dependencyName}@${dependencyVersion}",
+    "namespace": "http://tampermonkey.net/",
+    "license": "https://opensource.org/licenses/MIT",
+    "match": [
+      "https://github.com*"
+    ],
+    "connect": [],
+    "require": [],
+    "grant": [],
+    "exclude": [],
+    "resources": []
+  }
+}
