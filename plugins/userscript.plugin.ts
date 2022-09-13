@@ -1,4 +1,5 @@
-import p from '../package.json';
+import { readFileSync, writeFileSync } from 'fs';
+import { join } from 'path';
 
 /**
  * Userscript's all headers.
@@ -48,15 +49,16 @@ interface PackageJsonOptions {
     dependencies: { [key: string]: string };
 }
 
-const packageJson = p as Partial<PackageJsonOptions>;
-const userscript = packageJson.userscript as Partial<UserScriptOptions>;
-
 /**
  * Generate a userscript's headers from "package.json" file.
  * 
  * @returns {string} Return userscript's header.
  */
 export function generateHeader() {
+
+    const packageJsonRaw = readFileSync(join(__dirname, '../package.json'), 'utf8');
+    const packageJson = JSON.parse(packageJsonRaw) as Partial<PackageJsonOptions>;
+    const userscript = packageJson.userscript as Partial<UserScriptOptions>;
 
     // The regular expression used to remove the dependency version string prefix.
     const dependencyVersionRegExp = /^[\^~]/;
