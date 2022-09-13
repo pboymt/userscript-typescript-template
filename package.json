@@ -1,11 +1,12 @@
 {
   "name": "userscript-typescript-template",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Template repo using Webpack and TypeScript to build your userscript for Tampermonkey and more extensions.",
   "main": "userscript/index.user.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "build:watch": "webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,12 @@
   "homepage": "https://github.com/pboymt/userscript-typescript-template#readme",
   "devDependencies": {
     "@types/node": "^16.11.10",
+    "@types/prettier": "^2.7.0",
+    "@types/tampermonkey": "^4.0.5",
     "@types/webpack": "^5.28.0",
+    "axios-userscript-adapter": "^0.1.12",
+    "prettier": "^2.7.1",
+    "terser-webpack-plugin": "^5.3.6",
     "ts-loader": "^9.2.6",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.2",
@@ -39,5 +45,8 @@
     "grant": [],
     "exclude": [],
     "resources": []
+  },
+  "dependencies": {
+    "axios": "^0.27.2"
   }
 }
