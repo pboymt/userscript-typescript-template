@@ -163,8 +163,8 @@ export function generateHeader() {
             const dependencyVersion = packageJson.dependencies[dependencyName].replace(dependencyVersionRegExp, '');
             headers.push(
                 requireTemplate
-                    .replace('{dependencyName}', dependencyName)
-                    .replace('{dependencyVersion}', dependencyVersion)
+                    .replace('${dependencyName}', dependencyName)
+                    .replace('${dependencyVersion}', dependencyVersion)
             );
         }
     }
