@@ -7,8 +7,10 @@ import { join } from 'path';
 interface UserScriptOptions {
     'require-template': string;
     name: string;
+    'i18n-names': { i18n: string; name: string; }[];
     namespace: string;
     description: string;
+    'i18n-descriptions': { i18n: string; description: string; }[];
     version: string;
     author: string;
     homepage: string;
@@ -74,6 +76,12 @@ export function generateHeader() {
     } else {
         throw new Error('No name specified in package.json');
     }
+    // Add i18n names.
+    if (userscript['i18n-names']) {
+        for (const i18n_name of userscript['i18n-names']) {
+            headers.push(`// @name:${i18n_name.i18n} ${i18n_name.name}`);
+        }
+    }
     /**
      * Add userscript header's version. 
      * If the version is not set, the package version is used. If neither is set, an error is thrown.
@@ -90,6 +98,12 @@ export function generateHeader() {
     // Add userscript header's description.
     if (packageJson.description || userscript.description) {
         headers.push(`// @description ${userscript.description ?? packageJson.description}`);
+    }
+    // Add i18n descriptions.
+    if (userscript['i18n-descriptions']) {
+        for (const i18n_description of userscript['i18n-descriptions']) {
+            headers.push(`// @description:${i18n_description.i18n} ${i18n_description.description}`);
+        }
     }
     // Add userscript header's author.
     if (packageJson.author || userscript.author) {
