@@ -157,7 +157,7 @@ export function generateHeader() {
      * in the "require-template" field of the "userscript" object in the "package.json" file.
      */
     if (packageJson.dependencies) {
-        const urlTemplate = userscript['require-template'] ?? 'https://cdn.jsdelivr.net/npm/{dependencyName}@{dependencyVersion}';
+        const urlTemplate = userscript['require-template'] ?? 'https://cdn.jsdelivr.net/npm/${dependencyName}@${dependencyVersion}';
         const requireTemplate = `// @require ${urlTemplate}`;
         for (const dependencyName in packageJson.dependencies) {
             const dependencyVersion = packageJson.dependencies[dependencyName].replace(dependencyVersionRegExp, '');
