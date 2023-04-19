@@ -183,12 +183,15 @@ export function generateHeader() {
      * in the "require-template" field of the "userscript" object in the "package.json" file.
      */
     if (packageJson.dependencies) {
-        const urlTemplate = userscript['require-template'] ?? 'https://cdn.jsdelivr.net/npm/{dependencyName}@{dependencyVersion}';
+        const urlTemplate = userscript['require-template'] ?? 'https://cdn.jsdelivr.net/npm/${dependencyName}@${dependencyVersion}';
         const requireTemplate = `// @require ${urlTemplate}`;
         for (const dependencyName in packageJson.dependencies) {
             const dependencyVersion = packageJson.dependencies[dependencyName].replace(dependencyVersionRegExp, '');
             headers.push(
                 requireTemplate
+                    .replace('${dependencyName}', dependencyName)
+                    .replace('${dependencyVersion}', dependencyVersion)
+                    // Due to the potential conflict caused by this patch, the original template replacement statement was added.
                     .replace('{dependencyName}', dependencyName)
                     .replace('{dependencyVersion}', dependencyVersion)
             );
