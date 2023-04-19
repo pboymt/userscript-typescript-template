@@ -2,13 +2,20 @@ import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
 /**
+ * I18n field of the userscript.
+ */
+type I18nField = { [locale: string]: string };
+
+/**
  * Userscript's all headers.
  */
 interface UserScriptOptions {
     'require-template': string;
     name: string;
+    'i18n-names': I18nField;
     namespace: string;
     description: string;
+    'i18n-descriptions': I18nField;
     version: string;
     author: string;
     homepage: string;
@@ -76,6 +83,14 @@ export function generateHeader() {
         throw new Error('No name specified in package.json');
     }
     /**
+     * Add userscript header's i18n-names.
+     */
+    if (userscript['i18n-names'] && typeof userscript['i18n-names'] === 'object') {
+        for (const [locale, name] of Object.entries(userscript['i18n-names'])) {
+            headers.push(`// @name:${locale} ${name}`);
+        }
+    }
+    /**
      * Add userscript header's version. 
      * If the version is not set, the package version is used. If neither is set, an error is thrown.
      */
@@ -91,6 +106,12 @@ export function generateHeader() {
     // Add userscript header's description.
     if (packageJson.description || userscript.description) {
         headers.push(`// @description ${userscript.description ?? packageJson.description}`);
+    }
+    // Add userscript header's i18n-descriptions.
+    if (userscript['i18n-descriptions'] && typeof userscript['i18n-descriptions'] === 'object') {
+        for (const [locale, description] of Object.entries(userscript['i18n-descriptions'])) {
+            headers.push(`// @description:${locale} ${description}`);
+        }
     }
     // Add userscript header's author.
     if (packageJson.author || userscript.author) {
