@@ -9,7 +9,7 @@ export default merge(base, {
         name: 'dev',
     },
     output: {
-        path: path.resolve(".", "userscript"),
+        path: path.resolve(".", "userscripts"),
         filename: "index.dev.user.js",
     },
     devtool: 'eval-source-map',

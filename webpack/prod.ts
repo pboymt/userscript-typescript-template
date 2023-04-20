@@ -9,7 +9,7 @@ export default merge(base, {
         name: 'prod',
     },
     output: {
-        path: path.resolve(".", "userscript"),
+        path: path.resolve(".", "userscripts"),
         filename: "index.prod.user.js",
     },
     watchOptions: {
