@@ -100,6 +100,6 @@
   },
   "exclude": [
     "node_modules",
-    "userscript"
+    "userscripts"
   ]
 }
