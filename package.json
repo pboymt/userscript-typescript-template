@@ -5,7 +5,8 @@
   "main": "userscript/index.user.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
+    "build": "webpack --config webpack/prod.ts",
+    "dev": "webpack --config webpack/dev.ts",
     "build:watch": "webpack --watch"
   },
   "repository": {
@@ -13,14 +14,14 @@
     "url": "git+https://github.com/pboymt/userscript-typescript-template.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "pboymt",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/pboymt/userscript-typescript-template/issues"
   },
   "homepage": "https://github.com/pboymt/userscript-typescript-template#readme",
   "devDependencies": {
-    "@types/node": "^16.11.10",
+    "@types/node": "^18.15.11",
     "@types/prettier": "^2.7.0",
     "@types/tampermonkey": "^4.0.5",
     "@types/webpack": "^5.28.0",
@@ -29,24 +30,31 @@
     "terser-webpack-plugin": "^5.3.6",
     "ts-loader": "^9.2.6",
     "ts-node": "^10.4.0",
-    "typescript": "^4.5.2",
+    "typescript": "^5.0.4",
     "webpack": "^5.64.3",
-    "webpack-cli": "^4.9.1"
+    "webpack-cli": "^4.9.1",
+    "webpack-merge": "^5.8.0"
   },
   "userscript": {
     "require-template": "https://cdn.jsdelivr.net/npm/${dependencyName}@${dependencyVersion}",
     "namespace": "http://tampermonkey.net/",
     "license": "https://opensource.org/licenses/MIT",
     "match": [
-      "https://github.com*"
+      "https://github.com/*",
+      "https://www.baidu.com/*"
     ],
-    "connect": [],
+    "connect": [
+      "github.com"
+    ],
     "require": [],
-    "grant": [],
+    "grant": [
+      "GM.xmlHttpRequest"
+    ],
     "exclude": [],
     "resources": []
   },
   "dependencies": {
+    "@trim21/gm-fetch": "^0.1.13",
     "axios": "^0.27.2"
   }
 }

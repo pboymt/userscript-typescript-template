@@ -1,22 +1,17 @@
-import path from "path";
-import { Configuration, BannerPlugin } from "webpack";
 import TerserPlugin from "terser-webpack-plugin";
-import { generateHeader } from "./plugins/userscript.plugin";
+import { Configuration, BannerPlugin } from "webpack";
+import { generateHeader } from "../plugins/userscript.plugin";
 
 const config: Configuration = {
-    mode: "none",
     entry: "./src/index.ts",
-    output: {
-        path: path.resolve(__dirname, "userscript"),
-        filename: "index.user.js",
-    },
+    target: "web",
     resolve: {
         extensions: [".ts", ".js"],
     },
     module: {
         rules: [
             {
-                test: /\.ts$/,
+                test: /\.m?ts$/,
                 use: "ts-loader",
                 exclude: /node_modules/,
             },
@@ -24,6 +19,7 @@ const config: Configuration = {
     },
     externals: {
         axios: "axios",
+        "@trim21/gm-fetch": "GM_fetch",
     },
     optimization: {
         minimize: false,
