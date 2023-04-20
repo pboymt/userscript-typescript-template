@@ -1,5 +1,7 @@
 {
     "conventionalCommits.scopes": [
-        "headers"
+        "headers",
+        "webpack",
+        "npm"
     ]
 }
