@@ -1,6 +1,6 @@
 {
   "name": "userscript-typescript-template",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "description": "Template repo using Webpack and TypeScript to build your userscript for Tampermonkey and more extensions.",
   "main": "userscript/index.user.js",
   "scripts": {
