@@ -211,9 +211,9 @@ export function generateHeader() {
         }
     }
     // Add userscript header's resources.
-    // Some of resources should contain a specified name, for which userscript can get value from it
+    // Some of the resources should contain a specified name, for which userscripts can get value from it
     // eg. // @resource mycss http://link.to/some.css
-    // Userscript have the ability to apply css with `GM_addStyle(GM_getResourceText('mycss'))`
+    // Userscripts have the ability to apply css with `GM_addStyle(GM_getResourceText('mycss'))`
     if (userscript.keyedResources) {
         for (const dependencyName in userscript.keyedResources) {
             headers.push(`// @resource ${dependencyName} ${userscript.keyedResources[dependencyName]}`);
