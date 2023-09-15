@@ -36,6 +36,7 @@ interface UserScriptOptions {
     exclude: string[];
     require: string[];
     resources: string[];
+    keyedResources: { [key: string]: string };
     connect: string[];
     'run-at': string;
     grant: string[];
@@ -207,6 +208,15 @@ export function generateHeader() {
     if (userscript.resources && userscript.resources instanceof Array) {
         for (const resource of userscript.resources) {
             headers.push(`// @resource ${resource}`);
+        }
+    }
+    // Add userscript header's resources.
+    // Some of the resources should contain a specified name, for which userscripts can get value from it
+    // eg. // @resource mycss http://link.to/some.css
+    // Userscripts have the ability to apply css with `GM_addStyle(GM_getResourceText('mycss'))`
+    if (userscript.keyedResources) {
+        for (const dependencyName in userscript.keyedResources) {
+            headers.push(`// @resource ${dependencyName} ${userscript.keyedResources[dependencyName]}`);
         }
     }
     // Add userscript header's connects.

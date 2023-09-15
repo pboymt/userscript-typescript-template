@@ -50,7 +50,8 @@
       "GM.xmlHttpRequest"
     ],
     "exclude": [],
-    "resources": []
+    "resources": [],
+    "keyedResources": {}
   },
   "dependencies": {
     "@trim21/gm-fetch": "^0.1.13",
